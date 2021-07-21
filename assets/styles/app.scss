@@ -1,5 +1,17 @@
+@import "variables.scss";
 @import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
 
 body {
-    background-color: lightgray;
+    background-color: #fffbfb;
+    font-family: "Roboto", sans-serif;
+    color: $primary;
+    font-size: 18px;
+
+}
+
+.title
+{
+    color : $secondary;
 }

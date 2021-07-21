@@ -1,63 +1,97 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Culture{% endblock %}
+{% block title %}Culture
+{% endblock %}
 
 {% block body %}
-    <h1 class="mt-5">{{ culture.name }} dashboard</h1>
-    <p>
-        Greetings homegrower! Bellow are the ideal conditions for your {{ culture.plantType.name}} home culture chamber! </br> Please note that these do not mention nutriments for your plants at this point, feel free to consult nutriment brands website to determine which one would fit best to your home garden !
-    </p>
-    <p>
-        You started this culture on {{ culture.startDate|date('d-m-Y')}} and the estimated date for your harvest is XXX.
-    </p>
-    <p>
-        As you currently are at the {{ stage }} stage of this culture, your plants currently need XXX hours of light per day and around XXX liters of water.
-    </p>
-    <p>
-        Please make sure the temperature of your room is somewhere bewteen XXX and XXX so that your babies can develop at their best.
-    </p>
-    <p>
-        Also make sure the PH of your soil is near XXX and your EC is around XXX.
-    </p>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="mt-4 title text-end">{{ culture.name }}
+					daily report
+				</h1>
+			</div>
+		</div>
+		<div class="row">
+
+			{% if 'already harvested' in stage %}
+				<p class="mt-5">
+					Oh oh it looks like this culture has already been harvested!
+                    <img src="{{ asset('/build/images/harvest.jpg') }}" alt="harvest" class=" rounded my-3 img-fluid">
+				</p>
+				<p class="text-center">
+					Maybe it is time for you to start a
+					<a href="{{ path('culture_new') }}" class="text-secondary">
+						new culture
+					</a>?
+				</p>
+			{% else %}
+				<p class="h4 my-3">
+					🍀 Greetings homegrower! 🍀
+				</p>
+				<p>
+					Bellow are the ideal conditions for your
+					{{ culture.plantType.name}}
+					home culture chamber.
+				</p>
+				<p class="small">
+					<em>
+						Please note that these do not mention nutriments for your plants at this point, feel free to check nutriment brands website to determine which one would fit best to your home garden !
+					</em>
+				</p>
+				<p>
+					You started your
+					{{ culture.plantType.name}}
+					 🌱 seeds on
+					{{ culture.startDate|date('d-m-Y')}}
+					and the estimated date for your harvest is
+					<span class="text-secondary">
+						🚜
+						{{ harvest|date('d-m-Y')}}.
+					</span>
+				</p>
+				<p>
+					As you currently are at the 🍼
+					{{ stage }}
+					stage of your {{ culture.plantType.name}} culture,
+					{% if 'sprout' in stage %}
+						your plants do not need any light or water at this point, just make sure the 👶 sprout substrate is gently moist.
+					{% else %}
+						your plants currently need 
+						<span class = "text-secondary">
+                        {{ needs.light }} hours
+                        </span>
+                         of 🌞 light per day and around 
+						<span class = "text-secondary">
+                        {{ needs.waterPerDay}}
+						liters
+                        </span> of 💦 water.</p>
+				</p>
+				<p>
+					Please make sure the🌡️temperature of your room is somewhere bewteen
+					<span class="text-secondary"> 🥶
+                    {{ needs.minTemperature}}°C 
+                    </span>
+                    and
+					<span class="text-secondary"> 🥵
+                    {{ needs.maxTemperature }}°C 
+                    </span>
+					so that your babies can develop at their best.
+				</p>
+				{% if needs.targetPH and needs.targetEC %}
+					<p>
+						Also make sure the PH of your soil is close to
+						{{ needs.targetPH }}
+						and your EC is around
+						{{ needs.targetEC }}.
+					</p>
+				{% endif %}
+			{% endif %}
+		{% endif %}
+
+	</div>
+
+	{# <a href="{{ path('culture_index') }}">back to list</a> #}
 
 
-
-
-
-
-
-
-
-
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ culture.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ culture.name }}</td>
-            </tr>
-            <tr>
-                <th>StartDate</th>
-                <td>{{ culture.startDate ? culture.startDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>SoilType</th>
-                <td>{{ culture.soilType }}</td>
-            </tr>
-            <tr>
-                <th>SeedsQty</th>
-                <td>{{ culture.seedsQty }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('culture_index') }}">back to list</a>
-
-    <a href="{{ path('culture_edit', {'id': culture.id}) }}">edit</a>
-
-    {{ include('culture/_delete_form.html.twig') }}
 {% endblock %}

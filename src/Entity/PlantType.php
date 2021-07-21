@@ -37,7 +37,17 @@ class PlantType
     /**
      * @ORM\Column(type="integer")
      */
-    private $daysBeforeHarvest;
+    private $daysToGrowth;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $daysToFlowering;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $daysToHarvest;
 
     public function __construct()
     {
@@ -122,14 +132,38 @@ class PlantType
         return $this;
     }
 
-    public function getDaysBeforeHarvest(): ?int
+    public function getDaysToGrowth(): ?int
     {
-        return $this->daysBeforeHarvest;
+        return $this->daysToGrowth;
     }
 
-    public function setDaysBeforeHarvest(int $daysBeforeHarvest): self
+    public function setDaysToGrowth(int $daysToGrowth): self
     {
-        $this->daysBeforeHarvest = $daysBeforeHarvest;
+        $this->daysToGrowth = $daysToGrowth;
+
+        return $this;
+    }
+
+    public function getDaysToFlowering(): ?int
+    {
+        return $this->daysToFlowering;
+    }
+
+    public function setDaysToFlowering(int $daysToFlowering): self
+    {
+        $this->daysToFlowering = $daysToFlowering;
+
+        return $this;
+    }
+
+    public function getDaysToHarvest(): ?int
+    {
+        return $this->daysToHarvest;
+    }
+
+    public function setDaysToHarvest(int $daysToHarvest): self
+    {
+        $this->daysToHarvest = $daysToHarvest;
 
         return $this;
     }

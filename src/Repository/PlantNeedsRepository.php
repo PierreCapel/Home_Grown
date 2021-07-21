@@ -2,7 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Culture;
 use App\Entity\PlantNeeds;
+use DateInterval;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,32 +22,46 @@ class PlantNeedsRepository extends ServiceEntityRepository
         parent::__construct($registry, PlantNeeds::class);
     }
 
-    // /**
-    //  * @return PlantNeeds[] Returns an array of PlantNeeds objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findCultureStage(Culture $culture)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $now = new DateTime('now');
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('M D Y'));
+        $daysToGrowth = new DateInterval('P' . $culture->getPlantType()->getDaysToGrowth() . 'D');
+        $daysToFlowering = new DateInterval('P' . $culture->getPlantType()->getDaysToFlowering() . 'D');
+        $daysToHarvest = new DateInterval('P' . $culture->getPlantType()->getDaysToHarvest() .'D');
+        $sproutEnd = $cultureStartDate->add($daysToGrowth);
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('M D Y'));
+        $growthEnd = $cultureStartDate->add($daysToFlowering);
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('M D Y'));
+        $floweringEnd = $cultureStartDate->add($daysToHarvest);
 
-    /*
-    public function findOneBySomeField($value): ?PlantNeeds
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($now < $sproutEnd ) {
+            return 'sprout';
+        } elseif ($now > $sproutEnd && $now < $growthEnd) {
+            return 'growth';
+        } else if ($now > $growthEnd && $now < $floweringEnd) {
+            return 'flowering';
+        } else {
+            return 'already harvested';
+        }
     }
-    */
+
+    public function findPlantNeedsByCultureStage(Culture $culture)
+    {
+        return $this->createQueryBuilder('plantNeeds')
+        ->andWhere('plantNeeds.cultureStage = :cultureStage')
+        // ->andWhere('plantNeeds.plantType = :plantType')
+        ->setParameter('cultureStage', $this->findCultureStage($culture))
+        // ->setParameter('plantType', $culture->getPlantType())
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function findHarvestDate(Culture $culture)
+    {
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('Y M D'));
+        $daysToHarvest = new DateInterval('P' . $culture->getPlantType()->getDaysToHarvest() . 'D');
+        return $cultureStartDate->add($daysToHarvest);
+    }
+
 }

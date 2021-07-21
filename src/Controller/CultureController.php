@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Culture;
 use App\Form\CultureType;
 use App\Repository\CultureRepository;
+use App\Repository\PlantNeedsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,16 +44,22 @@ class CultureController extends AbstractController
     }
 
     #[Route('/{id}', name: 'culture_show', methods: ['GET'])]
-    public function show(Culture $culture,CultureRepository $cultureRepository): Response
+    public function show(Culture $culture,PlantNeedsRepository $plantNeedsRepository): Response
     {
-        $currentCultureStage = $cultureRepository->findCultureStage($culture);
-        $currentNeeds = $cultureRepository->findPlantNeedsByCultureStage($culture);
-        dd($currentNeeds);
-        return $this->render('culture/show.html.twig', [
-            'culture' => $culture,
-            'stage' => $currentCultureStage,
-            'needs' => $currentNeeds
-        ]);
+        $currentCultureStage = $plantNeedsRepository->findCultureStage($culture);
+        $currentNeeds = [];
+        try {
+
+            $currentNeeds = $plantNeedsRepository->findPlantNeedsByCultureStage($culture)[0];
+        }
+        finally{
+            return $this->render('culture/show.html.twig', [
+                'culture' => $culture,
+                'stage' => $currentCultureStage,
+                'needs' => $currentNeeds,
+                'harvest' => $plantNeedsRepository->findHarvestDate($culture),
+            ]);
+        }
     }
 
     #[Route('/{id}/edit', name: 'culture_edit', methods: ['GET', 'POST'])]
