@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Culture index{% endblock %}
+
+{% block body %}
+    <h1 class="mt-5">Cultures Dashboard</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>StartDate</th>
+                <th>SoilType</th>
+                <th>SeedsQty</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for culture in cultures %}
+            <tr>
+                <td>{{ culture.id }}</td>
+                <td>{{ culture.name }}</td>
+                <td>{{ culture.startDate ? culture.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ culture.soilType }}</td>
+                <td>{{ culture.seedsQty }}</td>
+                <td>
+                    <a href="{{ path('culture_show', {'id': culture.id}) }}">show</a>
+                    <a href="{{ path('culture_edit', {'id': culture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('culture_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+{
+  "name": "home_grown",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "PierreCapel <pecapel@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@symfony/stimulus-bridge": "^2.0.0",
+    "@symfony/webpack-encore": "^1.5.0",
+    "bootstrap": "^5.0.2",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.0.0",
+    "stimulus": "^2.0.0",
+    "webpack-notifier": "^1.6.0"
+  }
+}
