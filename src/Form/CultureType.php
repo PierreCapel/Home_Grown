@@ -20,7 +20,7 @@ class CultureType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'What is the name of your home culture project?'
+                'label' => 'What is the name of this new project?'
             ])
             ->add('startDate', DateType::class, [
                 'widget' =>'single_text',

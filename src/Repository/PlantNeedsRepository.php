@@ -25,14 +25,14 @@ class PlantNeedsRepository extends ServiceEntityRepository
     public function findCultureStage(Culture $culture)
     {
         $now = new DateTime('now');
-        $cultureStartDate = new DateTime($culture->getStartDate()->format('M D Y'));
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('D M Y'));
         $daysToGrowth = new DateInterval('P' . $culture->getPlantType()->getDaysToGrowth() . 'D');
         $daysToFlowering = new DateInterval('P' . $culture->getPlantType()->getDaysToFlowering() . 'D');
         $daysToHarvest = new DateInterval('P' . $culture->getPlantType()->getDaysToHarvest() .'D');
         $sproutEnd = $cultureStartDate->add($daysToGrowth);
-        $cultureStartDate = new DateTime($culture->getStartDate()->format('M D Y'));
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('D M Y'));
         $growthEnd = $cultureStartDate->add($daysToFlowering);
-        $cultureStartDate = new DateTime($culture->getStartDate()->format('M D Y'));
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('D M Y'));
         $floweringEnd = $cultureStartDate->add($daysToHarvest);
 
         if ($now < $sproutEnd ) {
@@ -59,7 +59,7 @@ class PlantNeedsRepository extends ServiceEntityRepository
 
     public function findHarvestDate(Culture $culture)
     {
-        $cultureStartDate = new DateTime($culture->getStartDate()->format('Y M D'));
+        $cultureStartDate = new DateTime($culture->getStartDate()->format('D M Y'));
         $daysToHarvest = new DateInterval('P' . $culture->getPlantType()->getDaysToHarvest() . 'D');
         return $cultureStartDate->add($daysToHarvest);
     }

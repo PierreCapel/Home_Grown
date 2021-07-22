@@ -1,41 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Culture index{% endblock %}
+{% block title %}Home {% endblock %}
 
 {% block body %}
-    <h1 class="mt-5">Cultures Dashboard</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>StartDate</th>
-                <th>SoilType</th>
-                <th>SeedsQty</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="container">
+    <h1 class="my-5 main-title text-center">Welcome to Home Grown! 
+    </h1>
+    <h2 class="my-3 title text-center"> Touch one of your active cultures bellow to see your daily report! </h2>
+        <div class="row">
         {% for culture in cultures %}
-            <tr>
-                <td>{{ culture.id }}</td>
-                <td>{{ culture.name }}</td>
-                <td>{{ culture.startDate ? culture.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ culture.soilType }}</td>
-                <td>{{ culture.seedsQty }}</td>
-                <td>
-                    <a href="{{ path('culture_show', {'id': culture.id}) }}">show</a>
-                    <a href="{{ path('culture_edit', {'id': culture.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="col-12 text-center d-grid gap-2">
+                <a class="btn btn-lg btn-outline-secondary my-3" href="{{ path('culture_show', {'id': culture.id}) }}">{{ culture.name }}</a>            
+            </div>
         {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+        Oh oh, it seems you have no active culture ! 🤦
+        Let's <a href="{{ path('culture_new') }}"> start your next home culture project! </a>
+        <a href="{{ path('culture_new') }}">Create new</a>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('culture_new') }}">Create new</a>
+        </div>
+        <div class="row">
+        <div class="col-12 my-5 text-center">
+        🌞🌞🌞🌞
+        </div>
+        </div>
+</div>
 {% endblock %}

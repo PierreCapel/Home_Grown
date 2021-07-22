@@ -3,9 +3,10 @@
 {% block title %}New Culture{% endblock %}
 
 {% block body %}
-    <h1>Create new Culture</h1>
+<div class="container">
+    <h1 class="my-4 title text-end">Whooo your new culture is about to start !</h1>
 
     {{ include('culture/_form.html.twig') }}
 
-    <a href="{{ path('culture_index') }}">back to list</a>
+</div>
 {% endblock %}

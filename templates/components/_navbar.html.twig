@@ -1,19 +1,31 @@
+
 <nav class="navbar navbar-expand-md navbar-light bg-light shadow">
   <div class="container-fluid">
-    <a class="navbar-brand display-1 h1" href="">Home Grown</a>
+    <a class="navbar-brand h1 lead" href="{{ path('index')}}"> <img src="{{ asset('build/images/leaf-logo.png')}}" alt="logo" height="52"> Home Grown</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        {# <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('program_index') }}">Les Séries</a>
-        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('category_index') }}">Les Catégories</a>
-        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('episode_index') }}">Les Episodes</a>
-        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('season_index') }}">Les Saisons</a>
-        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('actor_index') }}">Les Acteurs</a>
-        <a class="nav-link text-end text-grey" aria-current="page" href="#">Connexion</a> #}
-        <a class="nav-link text-end text-grey" href="#">Enregistrement</a>
+        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('culture_history')}}">My cultures history</a>
+        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('plant_type_index')}}">Manage my plants</a>
+        <a class="nav-link active text-end text-primary" aria-current="page" href="">Start a new culture</a>
+
       </div>
     </div>
   </div>
 </nav>
+
+{# <div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Collapsed content</h5>
+    <span class="text-muted">Toggleable via the navbar brand.</span>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav> #}

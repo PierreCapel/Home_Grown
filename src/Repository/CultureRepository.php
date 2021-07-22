@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Culture;
+use App\Entity\Culture; 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

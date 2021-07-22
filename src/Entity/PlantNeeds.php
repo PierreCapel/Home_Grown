@@ -23,7 +23,7 @@ class PlantNeeds
     private $light;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $waterPerDay;
 
@@ -86,12 +86,12 @@ class PlantNeeds
         return $this;
     }
 
-    public function getWaterPerDay(): ?int
+    public function getWaterPerDay(): ?float
     {
         return $this->waterPerDay;
     }
 
-    public function setWaterPerDay(int $waterPerDay): self
+    public function setWaterPerDay(float $waterPerDay): self
     {
         $this->waterPerDay = $waterPerDay;
 
@@ -122,24 +122,24 @@ class PlantNeeds
         return $this;
     }
 
-    public function getTargetPH(): ?int
+    public function getTargetPH(): ?float
     {
         return $this->targetPH;
     }
 
-    public function setTargetPH(int $targetPH): self
+    public function setTargetPH(float $targetPH): self
     {
         $this->targetPH = $targetPH;
 
         return $this;
     }
 
-    public function getTargetEC(): ?int
+    public function getTargetEC(): ?float
     {
         return $this->targetEC;
     }
 
-    public function setTargetEC(int $targetEC): self
+    public function setTargetEC(float $targetEC): self
     {
         $this->targetEC = $targetEC;
 

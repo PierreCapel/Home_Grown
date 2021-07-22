@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlantType index
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="my-5 text-secondary">Your types of plants</h1>
+
+		{% for plant_type in plant_types %}
+<div class="col-12">
+			<div class="col-sm-6 my-2 shadow-sm">
+				<div class="card border-secondary">
+					<div class="card-body">
+						<h5 class="card-title">
+							{{ plant_type.name }}</h5>
+						<p class="card-text"> This plant usually takes about {{plant_type.daysToHarvest}} days 🗓️ to get ready for harvest.
+                        </p>
+                        <hr>
+                        <div class="text-center">
+						<a href="{{ path('plant_needs_index', {'id': plant_type.id}) }}" class="btn btn-secondary text-light">Edit plant needs</a>
+						<a href="{{ path('plant_type_delete', {'id': plant_type.id}) }}" class="btn btn-primary text-light">Delete plant</a>
+                        </div>
+					</div>
+				</div>
+			</div>
+</div>
+	{% else %}
+		<tr>
+			<td colspan="6">no records found</td>
+		</tr>
+	{% endfor %}
+
+	{# <table class="table">
+	        <thead>
+	            <tr>
+	                <th>Id</th>
+	                <th>Name</th>
+	                <th>DaysToGrowth</th>
+	                <th>DaysToFlowering</th>
+	                <th>DaysToHarvest</th>
+	                <th>actions</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr>
+	                <td>{{ plant_type.id }}</td>
+	                <td>{{ plant_type.name }}</td>
+	                <td>{{ plant_type.daysToGrowth }}</td>
+	                <td>{{ plant_type.daysToFlowering }}</td>
+	                <td>{{ plant_type.daysToHarvest }}</td>
+	                <td>
+	                    <a href="{{ path('plant_type_show', {'id': plant_type.id}) }}">show</a>
+	                    <a href="{{ path('plant_type_edit', {'id': plant_type.id}) }}">edit</a>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table> #}
+
+	<a href="{{ path('plant_type_new') }}">Create new</a>
+</div>{% endblock %}

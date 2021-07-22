@@ -11,13 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/culture')]
+#[Route('/')]
 class CultureController extends AbstractController
 {
-    #[Route('/', name: 'culture_index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(CultureRepository $cultureRepository): Response
     {
         return $this->render('culture/index.html.twig', [
+            'cultures' => $cultureRepository->findAll(),
+        ]);
+    }
+
+    #[Route('history', name: 'culture_history', methods: ['GET'])]
+    public function history(CultureRepository $cultureRepository): Response
+    {
+        return $this->render('culture/history.html.twig', [
             'cultures' => $cultureRepository->findAll(),
         ]);
     }
@@ -53,6 +61,7 @@ class CultureController extends AbstractController
             $currentNeeds = $plantNeedsRepository->findPlantNeedsByCultureStage($culture)[0];
         }
         finally{
+            // dd($currentNeeds);
             return $this->render('culture/show.html.twig', [
                 'culture' => $culture,
                 'stage' => $currentCultureStage,

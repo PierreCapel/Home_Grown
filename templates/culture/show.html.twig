@@ -2,12 +2,11 @@
 
 {% block title %}Culture
 {% endblock %}
-
 {% block body %}
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="mt-4 title text-end">{{ culture.name }}
+				<h1 class="mt-4 text-secondary text-end">{{ culture.name }}
 					daily report
 				</h1>
 			</div>
@@ -16,8 +15,8 @@
 
 			{% if 'already harvested' in stage %}
 				<p class="mt-5">
-					Oh oh it looks like this culture has already been harvested!
-                    <img src="{{ asset('/build/images/harvest.jpg') }}" alt="harvest" class=" rounded my-3 img-fluid">
+					Oh oh, it looks like this culture has already been harvested!
+					<img src="{{ asset('/build/images/harvest.jpg') }}" alt="harvest" class=" rounded my-3 img-fluid">
 				</p>
 				<p class="text-center">
 					Maybe it is time for you to start a
@@ -40,9 +39,9 @@
 					</em>
 				</p>
 				<p>
-					You started your
+					You started your {{ culture.seedsQty }}
 					{{ culture.plantType.name}}
-					 🌱 seeds on
+					🌱 seeds on
 					{{ culture.startDate|date('d-m-Y')}}
 					and the estimated date for your harvest is
 					<span class="text-secondary">
@@ -51,44 +50,63 @@
 					</span>
 				</p>
 				<p>
-					As you currently are at the 🍼
-					{{ stage }}
-					stage of your {{ culture.plantType.name}} culture,
+					{% if 'growth' in stage %}
+
+						As you currently are at the 🍼
+						{{ stage }}
+					{% else %}
+						As you currently are at the 🌻
+						{{ stage }}
+					{% endif %}
+					stage of your
+					{{ culture.plantType.name}}
+					culture,
 					{% if 'sprout' in stage %}
 						your plants do not need any light or water at this point, just make sure the 👶 sprout substrate is gently moist.
 					{% else %}
-						your plants currently need 
-						<span class = "text-secondary">
-                        {{ needs.light }} hours
-                        </span>
-                         of 🌞 light per day and around 
-						<span class = "text-secondary">
-                        {{ needs.waterPerDay}}
-						liters
-                        </span> of 💦 water.</p>
+						your plants currently need
+						<span class="text-secondary">
+							{{ needs.light }}
+							hours
+						</span>
+						of 🌞 light per day and around
+						<span class="text-secondary">
+							{{ needs.waterPerDay  }}
+							liters
+						</span>
+						of 💦 water.</p>
 				</p>
 				<p>
 					Please make sure the🌡️temperature of your room is somewhere bewteen
-					<span class="text-secondary"> 🥶
-                    {{ needs.minTemperature}}°C 
-                    </span>
-                    and
-					<span class="text-secondary"> 🥵
-                    {{ needs.maxTemperature }}°C 
-                    </span>
+					<span class="text-secondary">
+						🥶
+						{{ needs.minTemperature}}°C
+					</span>
+					and
+					<span class="text-secondary">
+						🥵
+						{{ needs.maxTemperature }}°C
+					</span>
 					so that your babies can develop at their best.
 				</p>
-				{% if needs.targetPH and needs.targetEC %}
+				{% if needs.targetPH %}
 					<p>
-						Also make sure the PH of your soil is close to
-						{{ needs.targetPH }}
-						and your EC is around
-						{{ needs.targetEC }}.
-					</p>
+						Also make sure the 💊 PH of your soil is close to
+						<span class="text-secondary">
+							{{ needs.targetPH }}
+						</span>
 				{% endif %}
+					{% if needs.targetEC %}
+
+
+						and your EC is around
+						<span class="text-secondary">
+							{{ needs.targetEC }}
+						</span>
+					{% endif %}.
+				</p>
 			{% endif %}
 		{% endif %}
-
 	</div>
 
 	{# <a href="{{ path('culture_index') }}">back to list</a> #}

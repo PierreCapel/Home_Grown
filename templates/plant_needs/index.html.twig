@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlantNeeds index{% endblock %}
+
+{% block body %}
+    <h1>PlantNeeds index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Light</th>
+                <th>WaterPerDay</th>
+                <th>CultureStage</th>
+                <th>MinTemperature</th>
+                <th>TargetPH</th>
+                <th>TargetEC</th>
+                <th>MaxTemperature</th>
+                <th>MinHumidity</th>
+                <th>MaxHumidity</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plant_need in plant_needs %}
+            <tr>
+                <td>{{ plant_need.id }}</td>
+                <td>{{ plant_need.light }}</td>
+                <td>{{ plant_need.waterPerDay }}</td>
+                <td>{{ plant_need.cultureStage }}</td>
+                <td>{{ plant_need.minTemperature }}</td>
+                <td>{{ plant_need.targetPH }}</td>
+                <td>{{ plant_need.targetEC }}</td>
+                <td>{{ plant_need.maxTemperature }}</td>
+                <td>{{ plant_need.minHumidity }}</td>
+                <td>{{ plant_need.maxHumidity }}</td>
+                <td>
+                    <a href="{{ path('plant_needs_show', {'id': plant_need.id}) }}">show</a>
+                    <a href="{{ path('plant_needs_edit', {'id': plant_need.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('plant_needs_new') }}">Create new</a>
+{% endblock %}
