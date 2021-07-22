@@ -7,9 +7,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('culture_history')}}">My cultures history</a>
-        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('plant_type_index')}}">Manage my plants</a>
-        <a class="nav-link active text-end text-primary" aria-current="page" href="">Start a new culture</a>
+        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('culture_new')}}">Start a new <span class="text-secondary">
+         culture</a>
+        </span>
+        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('culture_history')}}">My <span class="text-secondary">
+         cultures 
+        </span>
+         history</a>
+        <a class="nav-link active text-end text-primary" aria-current="page" href="{{ path('plant_type_index')}}">Manage my <span class="text-secondary">
+        plants</a>
+        </span> 
 
       </div>
     </div>

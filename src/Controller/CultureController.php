@@ -18,7 +18,7 @@ class CultureController extends AbstractController
     public function index(CultureRepository $cultureRepository): Response
     {
         return $this->render('culture/index.html.twig', [
-            'cultures' => $cultureRepository->findAll(),
+            'cultures' => $cultureRepository->findByHarvested(false),
         ]);
     }
 
@@ -52,10 +52,13 @@ class CultureController extends AbstractController
     }
 
     #[Route('/{id}', name: 'culture_show', methods: ['GET'])]
-    public function show(Culture $culture,PlantNeedsRepository $plantNeedsRepository): Response
+    public function show(Culture $culture, PlantNeedsRepository $plantNeedsRepository, CultureRepository $cultureRepository): Response
     {
         $currentCultureStage = $plantNeedsRepository->findCultureStage($culture);
         $currentNeeds = [];
+        $cultureRepository->keepHarvestedUpdated($culture);
+        $this->getDoctrine()->getManager()->flush();
+
         try {
 
             $currentNeeds = $plantNeedsRepository->findPlantNeedsByCultureStage($culture)[0];

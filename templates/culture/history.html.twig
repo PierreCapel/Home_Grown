@@ -3,31 +3,45 @@
 {% block title %}Culture index{% endblock %}
 
 {% block body %}
-    <h1 class="mt-5">Cultures History</h1>
+<div class="container">
+    <h1 class="my-5 text-secondary text-center">Your culture history</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="d-grid gap-2 pb-2">
+		</div>
         {% for culture in cultures %}
-            <tr>
-                <td>{{ culture.name }}</td>
-                <td>
-                    <a href="{{ path('culture_show', {'id': culture.id}) }}">show</a>
-                    <a href="{{ path('culture_edit', {'id': culture.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+			<div class="col-12">
+				<div class="col-sm-6 my-2 shadow-sm">
+					<div class="card border-secondary">
+						<div class="card-body">
+							<h5 class="card-title">
+								{{ culture.name }}</h5>
+							<p class="card-text text-end">
+								This culture was started on
+								<span class="text-secondary">
+									{{ culture.startDate|date('Y-m-d')}}
+								</span>
+                                {% if culture.harvested %}
+                                and if everything went smooth it has been harvested already ! 🚜 🚜
+                                {% else %}
+                                and your babies should be gently growing by now 🌱
+                                {% endif %}
+                                
+							</p>
+							<hr>
+							<div class="text-center">
+                            🌞 🌞 🌞
+								{# <a href="{{ path('plant_needs_index', {'id': plant_type.id}) }}" class="btn btn-secondary text-light">Edit plant needs</a> #}
+								{# <a href="" data-bs-toggle="modal" class="btn btn-primary text-light" data-bs-target="#deleteModal">Delete plant</a> #}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+            {% else %}
+                <p class="my-5">
+                No plants has been grown yet !
+                </p>
+            {% endfor %}
 
-    <a href="{{ path('culture_new') }}">Create new</a>
+</div>
 {% endblock %}

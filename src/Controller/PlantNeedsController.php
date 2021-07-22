@@ -61,24 +61,12 @@ class PlantNeedsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('plant_needs_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('plant_needs_index', [ 'id' => $plantNeed->getPlantType()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('plant_needs/edit.html.twig', [
             'plant_need' => $plantNeed,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'plant_needs_delete', methods: ['POST'])]
-    public function delete(Request $request, PlantNeeds $plantNeed): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$plantNeed->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($plantNeed);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('plant_needs_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -43,6 +43,11 @@ class Culture
      */
     private $seedsQty;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $harvested = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,4 +112,17 @@ class Culture
 
         return $this;
     }
+
+    public function getHarvested(): ?bool
+    {
+        return $this->harvested;
+    }
+
+    public function setHarvested(bool $harvested): self
+    {
+        $this->harvested = $harvested;
+
+        return $this;
+    }
+
 }

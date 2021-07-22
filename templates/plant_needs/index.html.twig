@@ -3,65 +3,52 @@
 {% block title %}PlantNeeds index{% endblock %}
 
 {% block body %}
-<div class="container">
+  <div class="container">
     <h1 class="my-5 pb-2 text-secondary text-center">Manage needs for this type of plant</h1>
 
+    <div class="accordion">
+      {% for plant_need in plant_needs %}
+        {% set tab_id = 'tab-' ~ plant_need.id %}
+        <div class="accordion-item my-3">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ tab_id }}" aria-expanded="false" aria-controls="{{ tab_id }}">
+              {{ plant_need.cultureStage|capitalize }} stage
+            </button>
+          </h2>
 
-<div class="accordion" id="accordionExample">
-        {% for plant_need in plant_needs %}
-  <div class="accordion-item my-2">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapse{{loop.index|format_spellout_number }}">
-        {{ plant_need.cultureStage|capitalize }}
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
+          <div id="{{ tab_id }}" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <p>
+                Light required per day : <span class="text-secondary">
+                {{ plant_need.light ? plant_need.light : '0' }} 
+                </span> hours </br>
+                Water required per day : 
+                <span class="text-secondary">
+                {{ plant_need.waterPerDay ? plant_need.waterPerDay : '0'  }}
+                </span>
+                  liters </br>
+                Minimum temperature : 
+                <span class="text-secondary"> {{ plant_need.minTemperature ? plant_need.minTemperature : '0' }}</span>°C </br>
+                Maximum temperature : 
+                <span class="text-secondary"> {{ plant_need.maxTemperature ? plant_need.maxTemperature : '0' }}</span>°C </br>
+                Minimum room humidity (for indoor culture) : 
+                <span class="text-secondary"> {{ plant_need.minHumidity ? plant_need.minHumidity : '0' }}</span>% </br>
+                Maximum room humidity (for indoor culture) : 
+                <span class="text-secondary"> {{ plant_need.maxHumidity ? plant_need.maxHumidity : '0' }}</span>% </br>
+                Target soil PH : 
+                <span class="text-secondary"> {{ plant_need.targetPH ? plant_need.targetPH : '0' }} </br>
+                </span>
+                Target EC (for hydro culture) :
+                <span class="text-secondary"> {{ plant_need.targetEC ? plant_need.targetEC : 'none' }}</span>
+              </p>
+
+              <div class="d-grid gap-2">
+                <a class ="btn btn-secondary text-light" href="{{ path('plant_needs_edit', {'id': plant_need.id}) }}">Update {{ plant_need.CultureStage }} stage needs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
-        {% endfor %}
-</div>
-
-    {# <table class="table">
-        <thead>
-            <tr>
-                <th>Light</th>
-                <th>WaterPerDay</th>
-                <th>CultureStage</th>
-                <th>MinTemperature</th>
-                <th>TargetPH</th>
-                <th>TargetEC</th>
-                <th>MaxTemperature</th>
-                <th>MinHumidity</th>
-                <th>MaxHumidity</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ plant_need.light }}</td>
-                <td>{{ plant_need.waterPerDay }}</td>
-                <td>{{ plant_need.cultureStage }}</td>
-                <td>{{ plant_need.minTemperature }}</td>
-                <td>{{ plant_need.targetPH }}</td>
-                <td>{{ plant_need.targetEC }}</td>
-                <td>{{ plant_need.maxTemperature }}</td>
-                <td>{{ plant_need.minHumidity }}</td>
-                <td>{{ plant_need.maxHumidity }}</td>
-                <td>
-                    <a href="{{ path('plant_needs_show', {'id': plant_need.id}) }}">show</a>
-                    <a href="{{ path('plant_needs_edit', {'id': plant_need.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        </tbody>
-    </table> #}
-
-    <a href="{{ path('plant_needs_new') }}">Create new</a>
-    </div>
 {% endblock %}
