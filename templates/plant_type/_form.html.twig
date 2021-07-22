@@ -1,4 +1,6 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_widget(form) }}
+<div class="d-grid gap-2">
+	<button class="btn btn-secondary text-light mt-3">{{ button_label|default('Add this plant') }}</button>
+</div>
 {{ form_end(form) }}

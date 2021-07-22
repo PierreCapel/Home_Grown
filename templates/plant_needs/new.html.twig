@@ -3,9 +3,9 @@
 {% block title %}New PlantNeeds{% endblock %}
 
 {% block body %}
-    <h1>Create new PlantNeeds</h1>
-
+<div class="container">
+    <h1 class="my-5 pb-2 text-secondary text-center">Manage needs for this type of plant</h1>
     {{ include('plant_needs/_form.html.twig') }}
-
+</div>
     {# <a href="{{ path('plant_needs_index') }}">back to list</a> #}
 {% endblock %}

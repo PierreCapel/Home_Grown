@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PlantNeeds;
 use App\Entity\PlantType;
 use App\Form\PlantTypeType;
 use App\Repository\PlantTypeRepository;
@@ -30,7 +31,23 @@ class PlantTypeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            //generate three grow stages needs
+            $plantNeedsSprout = new PlantNeeds();
+            $plantNeedsSprout
+                ->setPlantType($plantType)
+                ->setCultureStage('sprout');
+            $plantNeedsGrowth = new PlantNeeds();
+            $plantNeedsGrowth 
+                ->setPlantType($plantType)
+                ->setCultureStage('growth');
+            $plantNeedsFlowering = new PlantNeeds();
+            $plantNeedsFlowering
+                ->setPlantType($plantType)
+                ->setCultureStage('flowering');
             $entityManager->persist($plantType);
+            $entityManager->persist($plantNeedsSprout);
+            $entityManager->persist($plantNeedsGrowth);
+            $entityManager->persist($plantNeedsFlowering);
             $entityManager->flush();
 
             return $this->redirectToRoute('plant_type_index', [], Response::HTTP_SEE_OTHER);

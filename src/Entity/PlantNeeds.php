@@ -18,12 +18,12 @@ class PlantNeeds
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $light;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $waterPerDay;
 
@@ -33,7 +33,7 @@ class PlantNeeds
     private $cultureStage;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $minTemperature;
 

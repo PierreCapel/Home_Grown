@@ -3,12 +3,30 @@
 {% block title %}PlantNeeds index{% endblock %}
 
 {% block body %}
-    <h1>PlantNeeds index</h1>
+<div class="container">
+    <h1 class="my-5 pb-2 text-secondary text-center">Manage needs for this type of plant</h1>
 
-    <table class="table">
+
+<div class="accordion" id="accordionExample">
+        {% for plant_need in plant_needs %}
+  <div class="accordion-item my-2">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapse{{loop.index|format_spellout_number }}">
+        {{ plant_need.cultureStage|capitalize }}
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+        {% endfor %}
+</div>
+
+    {# <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Light</th>
                 <th>WaterPerDay</th>
                 <th>CultureStage</th>
@@ -22,9 +40,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for plant_need in plant_needs %}
             <tr>
-                <td>{{ plant_need.id }}</td>
                 <td>{{ plant_need.light }}</td>
                 <td>{{ plant_need.waterPerDay }}</td>
                 <td>{{ plant_need.cultureStage }}</td>
@@ -43,9 +59,9 @@
             <tr>
                 <td colspan="11">no records found</td>
             </tr>
-        {% endfor %}
         </tbody>
-    </table>
+    </table> #}
 
     <a href="{{ path('plant_needs_new') }}">Create new</a>
+    </div>
 {% endblock %}
