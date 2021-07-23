@@ -25,7 +25,7 @@ class PlantType
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=PlantNeeds::class, mappedBy="plantType",  cascade={"remove"})
+     * @ORM\OneToMany(targetEntity=PlantNeeds::class, mappedBy="plantType", cascade={"remove"})
      */
     private $plantNeeds;
 

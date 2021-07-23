@@ -42,7 +42,7 @@ class CultureController extends AbstractController
             $entityManager->persist($culture);
             $entityManager->flush();
 
-            return $this->redirectToRoute('culture_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('culture/new.html.twig', [
@@ -83,7 +83,7 @@ class CultureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('culture_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('culture/edit.html.twig', [

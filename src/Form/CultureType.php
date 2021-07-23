@@ -24,7 +24,7 @@ class CultureType extends AbstractType
             ])
             ->add('startDate', DateType::class, [
                 'widget' =>'single_text',
-            'label' => "When is your home culture starting ?",
+            'label' => "When is your home culture starting?",
             'label_attr' => [
             ],
             'input' => "datetime",

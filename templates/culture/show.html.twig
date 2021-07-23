@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="mt-4 text-secondary text-end">{{ culture.name }}
+				<h1 class="my-5 text-secondary text-end">{{ culture.name }}
 					daily report
 				</h1>
 			</div>
@@ -35,7 +35,7 @@
 				</p>
 				<p class="small">
 					<em>
-						Please note that these do not mention nutriments for your plants at this point, feel free to check nutriment brands website to determine which one would fit best to your home garden !
+						Please note that these do not mention nutrients for your plants at this point, feel free to check nutrient brands' website to determine which one would fit best to your home garden !
 					</em>
 				</p>
 				<p>
@@ -97,12 +97,9 @@
 						</span>
 				{% endif %}
 					{% if needs.targetEC %}
-
-
 						and your EC is around
 						<span class="text-secondary">
-							{{ needs.targetEC }}
-						</span>
+							{{ needs.targetEC }}</span>
 					{% endif %}.
 				</p>
 			{% endif %}

@@ -10,7 +10,8 @@
 		</div>
         {% for culture in cultures %}
 			<div class="col-12">
-				<div class="col-sm-6 my-2 shadow-sm">
+				<div class="col-sm-6 my-2 shadow-sm" style="width: 100%">
+                	<a class="position-absolute h-100 w-100" href="{{ path("culture_show", {'id': culture.id}) }}"></a>
 					<div class="card border-secondary">
 						<div class="card-body">
 							<h5 class="card-title">
@@ -25,7 +26,6 @@
                                 {% else %}
                                 and your babies should be gently growing by now 🌱
                                 {% endif %}
-                                
 							</p>
 							<hr>
 							<div class="text-center">
