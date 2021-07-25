@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}{% endblock %} - Home Grown</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>
+			{% block title %}{% endblock %}
+			- Home Grown</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% include "components/_navbar.html.twig" %}
-        {% block body %}{% endblock %}
-    </body>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="d-lg-none">
+			{% include "components/_navbar.html.twig" %}
+			{% block body %}{% endblock %}
+		</div>
+		<div class="d-none d-lg-block my-5">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col align-self-center">
+						<h1 class="text-secondary mx-auto my-a">
+                        <img src="{{ asset('build/images/leaf-logo.png')}}" alt="logo" height="52">
+							Home Grown is a smartphone and tablet designed application. 
+                            <h2 class="text-primary text-center my-5">
+                            Please visit us again on your smartphone and let us assist you for your next home plant culture project !
+                            </h2> 
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit PlantType{% endblock %}
+{% block title %}Edit {{ plant_type.name|lower }} needs{% endblock %}
 
 {% block body %}
-    <h1>Edit PlantType</h1>
+<div class="container">
+    <h1 class="text-secondary my-5">Update the culture settings for this type of plants</h1>
+    <div class="row">
+        <div class="col-12">
+    {{ include('plant_type/_form.html.twig', {'button_label': 'Update'}) }}        
+        </div>
+    </div>
+</div>
 
-    {{ include('plant_type/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('plant_type_index') }}">back to list</a>
-
-    {{ include('plant_type/_delete_form.html.twig') }}
 {% endblock %}

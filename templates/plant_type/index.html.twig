@@ -5,13 +5,14 @@
 
 {% block body %}
 	<div class="container">
-		<h1 class="my-5 pb-2 text-secondary text-center">Manage your types of plants 🍃</h1>
+		<h1 class="mt-4 mb-3 pb-2 text-secondary text-center">Manage your types of plants 🍃</h1>
 		<div class="d-grid gap-2 pb-4">
 			<a class="btn border-secondary text-secondary shadow-sm" href="{{ path('plant_type_new') }}">Add a new type of plant</a>
 		</div>
 		{% for plant_type in plant_types %}
+		<div class="row">
 			<div class="col-12">
-				<div class="col-sm-6 my-2 shadow-sm">
+				<div class="my-2 shadow-sm">
 					<div class="card border-secondary">
 						<div class="card-body">
 							<h5 class="card-title">
@@ -52,6 +53,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		{% else %}
 			<p class="my-5 text-primary">You have not filled any plant type yet!</p>
 		{% endfor %}

@@ -4,16 +4,16 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="my-5 text-secondary text-center">Your culture history</h1>
+    <h1 class="mt-4 mb-3 text-secondary text-center">Your culture history</h1>
 
     <div class="d-grid gap-2 pb-2">
 		</div>
         {% for culture in cultures %}
 			<div class="col-12">
 				<div class="col-sm-6 my-2 shadow-sm" style="width: 100%">
-                	<a class="position-absolute h-100 w-100" href="{{ path("culture_show", {'id': culture.id}) }}"></a>
 					<div class="card border-secondary">
 						<div class="card-body">
+                	<a class="position-absolute h-100 w-100" href="{{ path("culture_show", {'id': culture.id}) }}"></a>
 							<h5 class="card-title">
 								{{ culture.name }}</h5>
 							<p class="card-text text-end">

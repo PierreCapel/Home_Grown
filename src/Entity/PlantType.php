@@ -30,7 +30,7 @@ class PlantType
     private $plantNeeds;
 
     /**
-     * @ORM\OneToMany(targetEntity=Culture::class, mappedBy="plantType")
+     * @ORM\OneToMany(targetEntity=Culture::class, mappedBy="plantType", cascade={"remove"})
      */
     private $cultures;
 

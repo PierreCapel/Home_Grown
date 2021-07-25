@@ -3,10 +3,16 @@
 {% block title %}New Culture{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1 class="my-5 text-secondary text-end">Whooo your new culture is about to start!</h1>
+<div class="container mb-5">
+<div class="row">
+    <h1 class="mt-5 mb-3 text-secondary text-end">Whooo your new culture is about to start!</h1>
+    <div class="col-12">
+    <img src="{{ asset('/build/images/startnewculture2.jpg') }}" alt="start-new-culture" class='img-fluid rounded mb-3'>
+    </div>
+</div>
+    
 
     {{ include('culture/_form.html.twig') }}
-
+</br>
 </div>
 {% endblock %}

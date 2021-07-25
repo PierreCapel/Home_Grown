@@ -4,7 +4,7 @@
 
 {% block body %}
   <div class="container">
-    <h1 class="my-5 pb-2 text-secondary text-center">Manage needs for this type of plant</h1>
+    <h1 class="my-5 pb-2 text-secondary text-center">Manage your {{ plant_needs.1.plantType.name|lower }} needs for each step of your cultures</h1>
 
     <div class="accordion">
       {% for plant_need in plant_needs %}

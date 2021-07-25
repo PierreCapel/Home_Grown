@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<h1 class="my-5 text-secondary text-end">{{ culture.name }}
+				<h1 class="mt-4 mb-3 text-secondary text-end">{{ culture.name }}
 					daily report
 				</h1>
 			</div>
@@ -14,14 +14,20 @@
 		<div class="row">
 
 			{% if 'already harvested' in stage %}
-				<p class="mt-5">
-					Oh oh, it looks like this culture has already been harvested!
+				<p class="">
+					It looks like this culture has already been harvested! 🍅 🥕 🧅 </br>
+					 We hope all went well, keep in mind that you can
+					 <a href="{{ path('plant_type_edit', {'id' : culture.plantType.id}) }}" class="text-secondary">
+					  update the needs for this type of plant
+					 </a>
+					   at any time if you want to try out different settings next time!
 					<img src="{{ asset('/build/images/harvest.jpg') }}" alt="harvest" class=" rounded my-3 img-fluid">
 				</p>
 				<p class="text-center">
-					Maybe it is time for you to start a
+					Maybe it is time to
 					<a href="{{ path('culture_new') }}" class="text-secondary">
-						new culture
+					 start your
+						next culture
 					</a>?
 				</p>
 			{% else %}
@@ -100,13 +106,17 @@
 						and your EC is around
 						<span class="text-secondary">
 							{{ needs.targetEC }}</span>
-					{% endif %}.
+					{% endif %}
 				</p>
 			{% endif %}
 		{% endif %}
+				<div class="row">
+			<div class="col-12 mt-2 mb-5 text-center">
+				🌞🌞🌞🌞
+			</div>
+		</div>
 	</div>
 
-	{# <a href="{{ path('culture_index') }}">back to list</a> #}
 
 
 {% endblock %}

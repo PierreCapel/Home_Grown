@@ -50,7 +50,7 @@ class PlantTypeController extends AbstractController
             $entityManager->persist($plantNeedsFlowering);
             $entityManager->flush();
 
-            return $this->redirectToRoute('plant_type_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('plant_needs_index', ['id' => $plantType->getId() ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('plant_type/new.html.twig', [
@@ -76,7 +76,7 @@ class PlantTypeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('plant_type_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('plant_needs_index', ['id' => $plantType->getId() ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('plant_type/edit.html.twig', [
