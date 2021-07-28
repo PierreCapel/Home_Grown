@@ -12,7 +12,7 @@ $ php bin/console d:d:c
 $ php bin/console d:m:m
 $ php bin/console server:start
 ```
-Also included in the repo is a mysql ```home_grown.sql``` demo ddb if you want to test it out without adding plants details or anything.
+Also included in the repo is a mysql ```home_grown.sql``` demo db if you want to test it out without adding plants details or anything.
 Hope you will enjoy the app!
 
 ![alt text](https://i.ibb.co/j6HHzL5/homeg.png)
